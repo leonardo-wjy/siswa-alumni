@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+use App\Http\Controllers\StudentController;
+
+Route::resource('students', StudentController::class);
+
+// tambahan untuk export excel & pdf
+Route::get('students-export-excel', [StudentController::class,'exportExcel'])->name('students.export.excel');
+Route::get('students/{student}/export-pdf', [StudentController::class,'exportPdf'])->name('students.export.pdf');
